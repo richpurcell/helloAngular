@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<div style="text-align:center">
+  <div class="outer">
+    <h1>
+      Restful Tasks API
+    </h1>
+    <div class="button">
+      <button class="btn btn-primary" (click)="getTasksFromService()">Get All Tasks</button>
+    </div>
+    <div *ngIf="showList">
+      <h2>All the tasks:</h2>
+      <table>
+        <div>
+          <tr *ngFor="let task of tasks">
+            <td><h4> {{task.title}} </h4></td>
+            <td><button class="btn btn-success" (click)="showTask(task._id)">SHOW</button></td>
+          </tr>
+        </div>
+      </table>
+    </div>
+    <div class="task" *ngIf="oneTask">
+      <h5 *ngFor="let i of aTask">{{i.title}}</h5>
+      <p *ngFor="let i of aTask">{{i.description}}</p>
+    </div>
+  </div>
+  
+  
+
