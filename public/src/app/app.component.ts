@@ -8,33 +8,49 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  // title = 'MEAN';
-  showList: boolean;
-  oneTask: boolean;
-  tasks = [];
-  aTask: [];
+  oneTask: string;
+  tasks: Object;
+  aTask: Object;
+  new_task: any;
+  edit: any;
   constructor(private _httpService: HttpService){}
   ngOnInit(){
-    this.showList = false;
-    this.oneTask = false;
+    this.tasks = [];
+    this.new_task = {title: "", description: "" };
+    this.getTasksFromService();
   }
-  getTasksFromService(){
-    this.showList = true;
+  getTasksFromService(){ // I think this is DONE!
     let observable = this._httpService.getTasks();
     observable.subscribe(data => { // can also say obsevable.then(data = {}) then finish off with .catch()
       this.tasks = data;
     });
   }
-  onButtonClickParam(id: string) {
-    console.log('Click event is working with param');
-    let observable = this._httpService.postTaskToServer(id);
-    observable.subscribe(id => console.log("Got our data", id));
-  }
-  showTask(id: string) {
-    this.oneTask = true;
+  showTask(id: string) { // I think this is DONE!
+    this.oneTask = id;
     let observable = this._httpService.getOneTask(id);
     observable.subscribe(data => {
-      this.aTask = data;
+      this.edit = {title: data[0].title, description: data[0].description, id: id};
+    });
+  }
+  newTask(){ // I think this is DONE!
+    let observable = this._httpService.postTaskToServer(this.new_task);
+    observable.subscribe(data => {
+      this.new_task = {title: "", description: "" };
+      this.getTasksFromService();
+    });
+  }
+  editTask(id: string){ // I think this is DONE!
+    this.oneTask = id;
+    let observable = this._httpService.editOneTask(this.edit.id, this.edit);
+    observable.subscribe(data => {
+      this.edit = {title: "", description: "" };
+      this.getTasksFromService();
+    });
+  }
+  deleteTask(id: string){ // I think this is DONE!
+    let observable = this._httpService.deleteOneTask(id);
+    observable.subscribe(data => {
+      this.getTasksFromService();
     });
   }
 }

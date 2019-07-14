@@ -18,15 +18,16 @@ export class HttpService {
     return this._http.get(`/tasks/${id}`);
   }
   // '/tasks' -> Create a Task -> POST
-  postTaskToServer(data){
-    return this._http.post('/task', data);
+  postTaskToServer(data: any){
+    return this._http.post('/tasks', data);
   }
   // '/tasks/:id' -> Update a Task by ID -> PUT
-
+  editOneTask(id: string, data: any){
+    return this._http.put(`/tasks/${id}`, data);
+  }
   // '/tasks/:id' -> Delete a Task by ID -> DELETE
   deleteOneTask(id: string){
-    let tempObservable = this._http.delete(`/tasks/${id}`);
-    tempObservable.subscribe(data => console.log(`Dleted task id: ${id}`, data))
+    return this._http.delete(`/tasks/${id}`);
   }
 }
 
