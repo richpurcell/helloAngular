@@ -8,28 +8,38 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  oneTask: string;
+  oneTask: any;
   tasks: Object;
   aTask: Object;
   new_task: any;
   edit: any;
+  show: boolean;
+  selectedTask: any;
+  tasktoShow: any;
   constructor(private _httpService: HttpService){}
   ngOnInit(){
     this.tasks = [];
     this.new_task = {title: "", description: "" };
     this.getTasksFromService();
+    this.show = false;
+    this.edit = {title: "", description: ""}
   }
   getTasksFromService(){ // I think this is DONE!
     let observable = this._httpService.getTasks();
     observable.subscribe(data => { // can also say obsevable.then(data = {}) then finish off with .catch()
-      this.tasks = data;
+      this.tasks = data.reverse();
     });
   }
+  taskToShow(aTask: any){
+    this.selectedTask = aTask;
+  }
   showTask(id: string) { // I think this is DONE!
-    this.oneTask = id;
+    this.oneTask = id; // Narrowed down to this line
+    this.show = true;
     let observable = this._httpService.getOneTask(id);
     observable.subscribe(data => {
-      this.edit = {title: data[0].title, description: data[0].description, id: id};
+      this.edit = data;
+      // console.log(data)
     });
   }
   newTask(){ // I think this is DONE!

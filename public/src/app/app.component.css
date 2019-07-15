@@ -1,19 +1,23 @@
 * {margin: 0px; padding: 0px;}
 div.container {margin-left: 50px; margin-top: 50px;}
 div.outer {border: solid gold 5px; width: 600px; padding: 50px; border-radius: 15px;}
-div.button {border: solid purple 5px; width: 500px; border-radius: 15px; padding: 10px;}
-/* ul {list-style: none; text-align: left;} */
-h4, button {display: inline-block; margin-left: 20px;}
+button.btn.mine.btn-success {margin-left: 340px;}
+
+h4, button {display: inline-block; margin-left: 20px;} /* edit button next to title */
 div.task input {width: 300px; margin-left: 80px;}
 .btn-success, .btn-danger { width: 100px}
-.taskBox {width: 600px; border: black solid 2px; margin-top: 30px; background-color: snow;}
+.taskBox {width: 570px; border: black solid 2px; margin-top: 30px; background-color: snow;}
 .table-borderless h2, p {width: 400px;}
 div.taskList {margin-top: 50px;}
-div.space {width: 50px; height: 50px;}
-h2, button {display: inline-block;}
-p, button {display: inline-block;}
+div.space1 {width: 50px; height: 50px;}
+/* h2, button {display: inline-block;} */
+/* p, button {display: inline-block;} */
 div.title div.desc {display: block;}
 div.desc {margin-top: 20px;}
-span {margin-left: 200px;}
+div.space, button {display: inline-block; vertical-align: top;}
+div.space {width: 400px; height: 35px; margin-left: 20px;}
+/* span {margin-left: 50px;} */
+div.none, button {background-color: none; border: none; cursor: pointer;}
+
 
 

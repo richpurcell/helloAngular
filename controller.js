@@ -8,7 +8,7 @@ module.exports = {
     },
     get_task: (req, res)=>{ // Retrieve a Task by ID
         console.log('The Task id requested is:', req.params.id);
-        Task.find({_id: req.params.id})
+        Task.findById(req.params.id)
             .then(data=>res.json(data))
             .catch(err=>res.json(err))
     },
